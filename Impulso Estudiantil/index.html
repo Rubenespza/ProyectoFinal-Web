@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECNM | Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo-section">
+            <img src="img/logo-tecnm1.png" alt="TECNM" class="sidebar-logo">
+            <span class="sidebar-brand">TECNM</span>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="#" class="nav-item active" data-section="home">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                </svg>
+                <span>HOME</span>
+            </a>
+
+            <a href="#" class="nav-item" data-section="becas">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                </svg>
+                <span>BECAS</span>
+            </a>
+
+       
+            <a href="#" class="nav-item" data-section="documentos">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                <span>DOCUMENTOS</span>
+            </a>
+
+            <a href="#" class="nav-item" data-section="ajustes">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                    <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <span>AJUSTES</span>
+            </a>
+        </nav>
+
+        <a href="login.html" class="nav-item logout">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+            </svg>
+            <span>CERRAR SESIÓN</span>
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="search-bar">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="M21 21l-4.35-4.35"></path>
+                </svg>
+                <input type="text" placeholder="Buscar">
+            </div>
+
+            <div class="header-actions">
+                <button class="icon-btn" id="notificationBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                    </svg>
+                    <span class="notification-badge" style="display: none;">0</span>
+                </button>
+                
+                <!-- Panel de Notificaciones -->
+                <div class="notifications-panel" id="notificationsPanel">
+                    <div class="notifications-header">
+                        <h3>Notificaciones</h3>
+                        <button class="options-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="1"></circle>
+                                <circle cx="12" cy="5" r="1"></circle>
+                                <circle cx="12" cy="19" r="1"></circle>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="notifications-tabs">
+                        <button class="tab-btn active">Todas</button>
+                        <button class="tab-btn">No leídas</button>
+                    </div>
+
+                    <div class="notifications-list">
+                        <div class="empty-notifications">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="64" height="64" style="color: #a0a3bd; margin-bottom: 20px;">
+                                <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                            </svg>
+                            <h4 style="color: #050505; font-size: 18px; font-weight: 700; margin: 0 0 8px 0;">No tienes notificaciones</h4>
+                            <p style="color: #65676b; font-size: 14px; margin: 0;">Las notificaciones aparecerán aquí cuando las recibas</p>
+                        </div>
+                    </div>
+
+                    <div class="notifications-footer" style="display: none;">
+                        <a href="#" class="view-all-link">Ver notificaciones anteriores</a>
+                    </div>
+                </div>
+
+                <div class="user-avatar">
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=19326c&color=fff" alt="User">
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Sección HOME -->
+            <div class="section-content active" id="home-section">
+                <div class="section-header">
+                    <h2>BECAS DISPONIBLES</h2>
+                    <div class="filter-tabs" id="filterTabsContainer"></div>
+                </div>
+
+                <div class="placeholder-content" id="emptyStateHome">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="80" height="80">
+                        <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                        <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                    </svg>
+                    <h3>No hay becas disponibles</h3>
+                    <p>Las becas abiertas aparecerán aquí cuando estén disponibles</p>
+                </div>
+
+                <div class="orders-grid" id="ordersGrid" style="display: none;"></div>
+            </div>
+
+            <!-- Sección BECAS -->
+            <div class="section-content" id="becas-section">
+                <div class="section-header">
+                    <h2>GESTIÓN DE BECAS</h2>
+                </div>
+                <div class="placeholder-content">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="80" height="80">
+                        <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                        <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                    </svg>
+                    <h3>Sección de Becas</h3>
+                    <p>Aquí podrás gestionar todas las becas disponibles</p>
+                </div>
+            </div>
+
+            <!-- Sección MENSAJES -->
+            <div class="section-content" id="mensajes-section">
+                <div class="section-header">
+                    <h2>MENSAJES</h2>
+                </div>
+                <div class="placeholder-content">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="80" height="80">
+                        <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <h3>Bandeja de Mensajes</h3>
+                    <p>Comunícate con estudiantes y personal</p>
+                </div>
+            </div>
+
+            <!-- Sección DOCUMENTOS -->
+            <div class="section-content" id="documentos-section">
+                <div class="section-header">
+                    <h2>GESTIÓN DE DOCUMENTOS</h2>
+                </div>
+
+                <div class="documents-grid">
+                    <!-- Acta de Nacimiento -->
+                    <div class="document-card" data-type="acta-nacimiento">
+                        <div class="document-icon pdf">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                            </svg>
+                        </div>
+                        <div class="document-info">
+                            <h4>Acta de Nacimiento</h4>
+                            <p class="doc-description">Documento oficial que acredita el nacimiento</p>
+                            <span class="document-status-new pendiente">Sin subir</span>
+                        </div>
+                        <div class="document-actions">
+                            <button class="doc-action-btn upload" title="Subir documento">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- CURP -->
+                    <div class="document-card" data-type="curp">
+                        <div class="document-icon pdf">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                            </svg>
+                        </div>
+                        <div class="document-info">
+                            <h4>CURP</h4>
+                            <p class="doc-description">Clave Única de Registro de Población</p>
+                            <span class="document-status-new pendiente">Sin subir</span>
+                        </div>
+                        <div class="document-actions">
+                            <button class="doc-action-btn upload" title="Subir documento">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Identificación Oficial -->
+                    <div class="document-card" data-type="identificacion">
+                        <div class="document-icon image">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                <polyline points="21 15 16 10 5 21"></polyline>
+                            </svg>
+                        </div>
+                        <div class="document-info">
+                            <h4>Identificación Oficial</h4>
+                            <p class="doc-description">INE, Pasaporte o Cédula Profesional</p>
+                            <span class="document-status-new pendiente">Sin subir</span>
+                        </div>
+                        <div class="document-actions">
+                            <button class="doc-action-btn upload" title="Subir documento">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Comprobante de Domicilio -->
+                    <div class="document-card" data-type="comprobante-domicilio">
+                        <div class="document-icon pdf">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                            </svg>
+                        </div>
+                        <div class="document-info">
+                            <h4>Comprobante de Domicilio</h4>
+                            <p class="doc-description">Recibo de luz, agua o teléfono (máx. 3 meses)</p>
+                            <span class="document-status-new pendiente">Sin subir</span>
+                        </div>
+                        <div class="document-actions">
+                            <button class="doc-action-btn upload" title="Subir documento">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Fotografía Reciente -->
+                    <div class="document-card" data-type="fotografia">
+                        <div class="document-icon image">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                <polyline points="21 15 16 10 5 21"></polyline>
+                            </svg>
+                        </div>
+                        <div class="document-info">
+                            <h4>Fotografía Reciente</h4>
+                            <p class="doc-description">Tamaño infantil, fondo blanco</p>
+                            <span class="document-status-new pendiente">Sin subir</span>
+                        </div>
+                        <div class="document-actions">
+                            <button class="doc-action-btn upload" title="Subir documento">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Cuenta Bancaria -->
+                    <div class="document-card" data-type="cuenta-bancaria">
+                        <div class="document-icon pdf">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                            </svg>
+                        </div>
+                        <div class="document-info">
+                            <h4>Número de Cuenta Bancaria</h4>
+                            <p class="doc-description">Estado de cuenta o carátula bancaria</p>
+                            <span class="document-status-new pendiente">Sin subir</span>
+                        </div>
+                        <div class="document-actions">
+                            <button class="doc-action-btn upload" title="Subir documento">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal de Subida -->
+                <div class="upload-modal" id="uploadModal" style="display: none;">
+                    <div class="modal-overlay"></div>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 id="modalTitle">Subir Documento</h3>
+                            <button class="modal-close">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="upload-area" id="uploadArea">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="64" height="64">
+                                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                                <h4>Arrastra tu archivo aquí</h4>
+                                <p>o haz clic para seleccionar</p>
+                                <span class="upload-requirements">PDF, JPG, PNG (Máx. 10 MB)</span>
+                                <input type="file" id="fileInput" accept=".pdf,.jpg,.jpeg,.png" style="display: none;">
+                            </div>
+                            <div class="upload-progress" id="uploadProgress" style="display: none;">
+                                <div class="upload-file-info">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32">
+                                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                    </svg>
+                                    <div class="file-details">
+                                        <span class="file-name">documento.pdf</span>
+                                        <span class="file-size">2.4 MB</span>
+                                    </div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill"></div>
+                                </div>
+                                <span class="progress-text">Subiendo... 0%</span>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="modal-btn cancel">Cancelar</button>
+                            <button class="modal-btn primary">Subir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección AJUSTES -->
+            <div class="section-content" id="ajustes-section">
+                <div class="section-header">
+                    <h2>AJUSTES DEL SISTEMA</h2>
+                </div>
+                
+                <div class="settings-container">
+                    <!-- Información Personal -->
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="settings-icon">
+                                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            <h3>Información Personal</h3>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="form-group">
+                                <label for="fullname">Nombre Completo</label>
+                                <input type="text" id="fullname" class="settings-input" value="" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="control-number">Número de Control</label>
+                                <input type="text" id="control-number" class="settings-input" value="" disabled>
+                            </div>
+                            <p class="info-message">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                </svg>
+                                Esta información no puede ser modificada. Para cambios, contacta al departamento de control escolar.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Correo Electrónico -->
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="settings-icon">
+                                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <h3>Correo Electrónico</h3>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="form-group">
+                                <label for="current-email">Correo Actual</label>
+                                <input type="email" id="current-email" class="settings-input" placeholder="correo@tecnm.mx" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-email">Nuevo Correo Electrónico</label>
+                                <input type="email" id="new-email" class="settings-input" placeholder="nuevo@tecnm.mx">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-email">Confirmar Correo Electrónico</label>
+                                <input type="email" id="confirm-email" class="settings-input" placeholder="nuevo@tecnm.mx">
+                            </div>
+                            <button class="settings-btn primary" type="button">Actualizar Correo</button>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta de Contraseña -->
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="settings-icon">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0110 0v4"></path>
+                            </svg>
+                            <h3>Cambiar Contraseña</h3>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="form-group">
+                                <label for="current-password">Contraseña Actual</label>
+                                <input type="password" id="current-password" class="settings-input" placeholder="••••••••">
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password">Nueva Contraseña</label>
+                                <input type="password" id="new-password" class="settings-input" placeholder="••••••••">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-password">Confirmar Nueva Contraseña</label>
+                                <input type="password" id="confirm-password" class="settings-input" placeholder="••••••••">
+                            </div>
+                            <div class="password-requirements">
+                                <p class="requirements-title">La contraseña debe contener:</p>
+                                <ul>
+                                    <li>Mínimo 8 caracteres</li>
+                                    <li>Al menos una letra mayúscula</li>
+                                    <li>Al menos un número</li>
+                                    <li>Al menos un carácter especial (!@#$%^&*)</li>
+                                </ul>
+                            </div>
+                            <button class="settings-btn primary" type="button">Cambiar Contraseña</button>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta de Preferencias -->
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="settings-icon">
+                                <path d="M12 15a3 3 0 100-6 3 3 0 000 6z"></path>
+                                <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"></path>
+                            </svg>
+                            <h3>Preferencias</h3>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="preference-item">
+                                <div class="preference-info">
+                                    <h4>Modo Oscuro</h4>
+                                    <p>Cambiar tema de la interfaz</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="darkModeToggle">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

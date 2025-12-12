@@ -1,0 +1,67 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECNM | IMPULSO ESTUDIANTIL - Sign In</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="img/logo-tecnm.png" alt="TECNM Logo" class="logo-img">
+            <span class="brand-name">TECNM | IMPULSO ESTUDIANTIL</span>
+        </div>
+
+      
+
+        <div class="login-box" id="loginBox">
+            <div class="main-icon">
+                <img src="img/book.png" alt="Libro" class="book-icon">
+            </div>
+
+            <h1 id="mainTitle">Inicio de Sesion</h1>
+            <p class="subtitle" id="mainSubtitle">Accede a tu cuenta para gestionar tus solicitudes de beca</p>
+
+            <form id="loginForm">
+                <div class="input-group">
+                    <input type="text" class="input-field" placeholder="Usuario" id="login" required>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" class="input-field" placeholder="Contraseña" id="password" required>
+                </div>
+
+                <div class="remember-row">
+                    <div class="checkbox-wrapper" onclick="toggleCheckbox()">
+                        <div class="checkbox" id="checkbox"></div>
+                        <span class="checkbox-label">Recordar Sesion</span>
+                    </div>
+                    <a href="#" class="forgot-password" onclick="showForgotPassword(event)">¿Olvidase tu Contraseña?</a>
+                </div>
+
+                <button type="submit" class="login-button">Iniciar Sesion</button>
+            </form>
+
+            <!-- Formulario de recuperación de contraseña (oculto por defecto) -->
+            <form id="forgotPasswordForm" style="display: none;">
+                <div class="input-group">
+                    <input type="email" class="input-field" placeholder="correo" id="recoveryEmail" required>
+                </div>
+
+                <button type="submit" class="login-button">Enviar</button>
+                
+                <a href="#" class="back-to-login" onclick="showLogin(event)">← Regresar al Inicio de Sesion</a>
+            </form>
+        </div>
+
+        <div class="footer">
+            <p>2025 © TECNM | IMPULSO ESTUDIANTIL. All rights reserved.</p>
+            <p>Tecnológico Nacional de México</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

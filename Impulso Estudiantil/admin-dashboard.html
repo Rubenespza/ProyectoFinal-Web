@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECNM | Panel de Administración</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+    
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo-section">
+            <img src="img/logo-tecnm1.png" alt="TECNM" class="sidebar-logo">
+            <span class="sidebar-brand">ADMIN TECNM</span>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="#" class="nav-item active" data-section="solicitudes">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+                <span>SOLICITUDES</span>
+            </a>
+
+            <a href="#" class="nav-item" data-section="estudiantes">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 00-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 010 7.75"></path>
+                </svg>
+                <span>ESTUDIANTES</span>
+            </a>
+
+            <a href="#" class="nav-item" data-section="becas">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                </svg>
+                <span>BECAS</span>
+            </a>
+
+            
+        </nav>
+
+        <a href="login.html" class="nav-item logout">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+            </svg>
+            <span>CERRAR SESIÓN</span>
+        </a>
+    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-title">
+                <h1 id="pageTitle">Gestión de Solicitudes</h1>
+                <p id="pageSubtitle">Administra las solicitudes de becas</p>
+            </div>
+
+            <div class="header-actions">
+                
+                
+                <div class="user-info">
+                    <div class="user-details">
+                        <span class="user-name" id="adminName">Administrador</span>
+                        <span class="user-role">Admin</span>
+                    </div>
+                    <div class="user-avatar">
+                        <img src="https://ui-avatars.com/api/?name=Admin&background=c62828&color=fff" alt="Admin">
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Sección SOLICITUDES -->
+            <div class="section-content active" id="solicitudes-section">
+                <div class="placeholder-content">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="80" height="80">
+                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                    </svg>
+                    <h3>Gestión de Solicitudes</h3>
+                    <p>Aquí podrás ver y administrar todas las solicitudes de becas</p>
+                </div>
+            </div>
+
+            <!-- Sección ESTUDIANTES -->
+            <div class="section-content" id="estudiantes-section">
+                <div class="students-header">
+                    <div class="header-left">
+                        <h2>Gestión de Estudiantes</h2>
+                        <p class="section-description">Administra la base de datos de estudiantes registrados</p>
+                    </div>
+                    <button class="btn-add-student" id="btnAddStudent">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg>
+                        Registrar Estudiante
+                    </button>
+                </div>
+
+                <div class="students-filters">
+                    <div class="search-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="M21 21l-4.35-4.35"></path>
+                        </svg>
+                        <input type="text" id="searchStudent" placeholder="Buscar por matrícula o nombre...">
+                    </div>
+                    <div class="filter-info">
+                        <span class="total-students">Total: <strong id="totalStudentsCount">0</strong> estudiantes</span>
+                    </div>
+                </div>
+
+                <div class="students-table-container">
+                    <table class="students-table">
+                        <thead>
+                            <tr>
+                                <th>Matrícula</th>
+                                <th>Nombre Completo</th>
+                                <th>Correo Electrónico</th>
+                                <th>Fecha de Registro</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsTableBody"></tbody>
+                    </table>
+                </div>
+
+                <div class="empty-state" id="emptyState" style="display: none;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="80" height="80">
+                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 00-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 010 7.75"></path>
+                    </svg>
+                    <h3>No hay estudiantes registrados</h3>
+                    <p>Comienza registrando tu primer estudiante</p>
+                    <button class="btn-empty-action" onclick="document.getElementById('btnAddStudent').click()">
+                        Registrar Estudiante
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal de Registro de Estudiante -->
+            <div class="student-modal" id="studentModal" style="display: none;">
+                <div class="modal-overlay" onclick="closeStudentModal()"></div>
+                <div class="modal-content-student">
+                    <div class="modal-header-student">
+                        <h3 id="modalStudentTitle">Registrar Nuevo Estudiante</h3>
+                        <button class="modal-close-student" onclick="closeStudentModal()">&times;</button>
+                    </div>
+                    
+                    <form id="studentForm" class="modal-body-student">
+                        <div class="form-row">
+                            <div class="form-group-student">
+                                <label for="studentMatricula">Matrícula <span class="required">*</span></label>
+                                <input type="text" id="studentMatricula" class="input-student" placeholder="20401234" maxlength="8" required>
+                                <small class="input-hint">8 dígitos numéricos</small>
+                            </div>
+                            <div class="form-group-student">
+                                <label for="studentEmail">Correo Electrónico <span class="required">*</span></label>
+                                <input type="email" id="studentEmail" class="input-student" placeholder="estudiante@tecnm.mx" required>
+                                <small class="input-hint">Correo institucional del estudiante</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group-student">
+                            <label for="studentName">Nombre Completo <span class="required">*</span></label>
+                            <input type="text" id="studentName" class="input-student" placeholder="Juan Carlos Pérez González" required>
+                            <small class="input-hint">Nombre completo como aparece en documentos oficiales</small>
+                        </div>
+
+                        <div class="password-info-box">
+                            <div class="info-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                                </svg>
+                            </div>
+                            <div class="info-content">
+                                <strong>Contraseña por Defecto</strong>
+                                <p>El estudiante podrá ingresar con la contraseña: <code>tecnm2025</code></p>
+                                <p class="info-note">Puede cambiarla desde su perfil una vez que inicie sesión</p>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer-student">
+                            <button type="button" class="btn-cancel-student" onclick="closeStudentModal()">Cancelar</button>
+                            <button type="submit" class="btn-save-student">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                                    <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"></path>
+                                    <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                                    <polyline points="7 3 7 8 15 8"></polyline>
+                                </svg>
+                                Registrar Estudiante
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal de Editar Estudiante -->
+            <div class="student-modal" id="editStudentModal" style="display: none;">
+                <div class="modal-overlay" onclick="closeEditStudentModal()"></div>
+                <div class="modal-content-student">
+                    <div class="modal-header-student">
+                        <h3>Editar Estudiante</h3>
+                        <button class="modal-close-student" onclick="closeEditStudentModal()">&times;</button>
+                    </div>
+                    
+                    <form id="editStudentForm" class="modal-body-student">
+                        <input type="hidden" id="editStudentMatricula">
+                        
+                        <div class="form-group-student">
+                            <label for="editStudentName">Nombre Completo <span class="required">*</span></label>
+                            <input type="text" id="editStudentName" class="input-student" required>
+                        </div>
+
+                        <div class="form-group-student">
+                            <label for="editStudentEmail">Correo Electrónico <span class="required">*</span></label>
+                            <input type="email" id="editStudentEmail" class="input-student" required>
+                        </div>
+
+                        <div class="alert-info">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                            </svg>
+                            <span>La matrícula no puede ser modificada</span>
+                        </div>
+
+                        <div class="modal-footer-student">
+                            <button type="button" class="btn-cancel-student" onclick="closeEditStudentModal()">Cancelar</button>
+                            <button type="submit" class="btn-save-student">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                                    <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"></path>
+                                    <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                                    <polyline points="7 3 7 8 15 8"></polyline>
+                                </svg>
+                                Guardar Cambios
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sección BECAS -->
+            <div class="section-content" id="becas-section">
+                <div class="students-header">
+                    <div class="header-left">
+                        <h2>Gestión de Becas</h2>
+                        <p class="section-description">Crea y administra las convocatorias de becas disponibles</p>
+                    </div>
+                    <button class="btn-add-student" id="btnCreateBeca">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg>
+                        Crear Nueva Beca
+                    </button>
+                </div>
+
+                <div class="students-filters">
+                    <div class="search-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="M21 21l-4.35-4.35"></path>
+                        </svg>
+                        <input type="text" id="searchBeca" placeholder="Buscar beca por nombre...">
+                    </div>
+                    <div class="filter-info">
+                        <span class="total-students">Total: <strong id="totalBecasCount">0</strong> becas</span>
+                    </div>
+                </div>
+
+                <div class="students-table-container" id="becasTableContainer">
+                    <table class="students-table">
+                        <thead>
+                            <tr>
+                                <th>Nombre de la Beca</th>
+                                <th>Objetivo</th>
+                                <th>Fecha de Apertura</th>
+                                <th>Fecha de Cierre</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="becasTableBody"></tbody>
+                    </table>
+                </div>
+
+                <div class="empty-state" id="emptyStateBecas">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="80" height="80">
+                        <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                        <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                    </svg>
+                    <h3>No hay becas registradas</h3>
+                    <p>Comienza creando tu primera convocatoria de beca</p>
+                    <button class="btn-empty-action" onclick="document.getElementById('btnCreateBeca').click()">
+                        Crear Nueva Beca
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal de Crear/Editar Beca -->
+            <div class="student-modal" id="becaModal" style="display: none;">
+                <div class="modal-overlay" onclick="closeBecaModal()"></div>
+                <div class="modal-content-student" style="max-width: 800px;">
+                    <div class="modal-header-student">
+                        <h3 id="modalBecaTitle">Crear Nueva Beca</h3>
+                        <button class="modal-close-student" onclick="closeBecaModal()">&times;</button>
+                    </div>
+                    
+                    <form id="becaForm" class="modal-body-student" style="max-height: 70vh; overflow-y: auto;">
+                        <input type="hidden" id="becaId">
+                        
+                        <div class="form-group-student">
+                            <label for="becaNombre">Nombre de la Beca <span class="required">*</span></label>
+                            <input type="text" id="becaNombre" class="input-student" placeholder='Ej: Beca "Escribiendo el Futuro"' required>
+                            <small class="input-hint">Nombre oficial de la convocatoria</small>
+                        </div>
+
+                        <div class="form-group-student">
+                            <label for="becaDescripcion">Descripción <span class="required">*</span></label>
+                            <textarea id="becaDescripcion" class="input-student" rows="3" placeholder="Describe brevemente la beca..." required style="resize: vertical; font-family: inherit;"></textarea>
+                            <small class="input-hint">Descripción general de la beca</small>
+                        </div>
+
+                        <div class="form-group-student">
+                            <label for="becaObjetivo">Objetivo <span class="required">*</span></label>
+                            <textarea id="becaObjetivo" class="input-student" rows="3" placeholder="¿Cuál es el objetivo de esta beca?" required style="resize: vertical; font-family: inherit;"></textarea>
+                            <small class="input-hint">Propósito y alcance de la beca</small>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group-student">
+                                <label for="becaFechaApertura">Fecha de Apertura <span class="required">*</span></label>
+                                <input type="date" id="becaFechaApertura" class="input-student" required>
+                                <small class="input-hint">Inicio de la convocatoria</small>
+                            </div>
+                            <div class="form-group-student">
+                                <label for="becaFechaCierre">Fecha de Cierre <span class="required">*</span></label>
+                                <input type="date" id="becaFechaCierre" class="input-student" required>
+                                <small class="input-hint">Fin de la convocatoria</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group-student">
+                            <label style="display: block; margin-bottom: 15px;">Documentos Requeridos <span class="required">*</span></label>
+                            <div style="background: #f8f9fc; padding: 20px; border-radius: 10px; border: 2px solid #e8eef5;">
+                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                                    <label class="checkbox-documento">
+                                        <input type="checkbox" id="doc_acta" value="acta-nacimiento">
+                                        <span class="checkbox-custom"></span>
+                                        <span class="checkbox-text">Acta de Nacimiento</span>
+                                    </label>
+                                    
+                                    <label class="checkbox-documento">
+                                        <input type="checkbox" id="doc_curp" value="curp">
+                                        <span class="checkbox-custom"></span>
+                                        <span class="checkbox-text">CURP</span>
+                                    </label>
+                                    
+                                    <label class="checkbox-documento">
+                                        <input type="checkbox" id="doc_identificacion" value="identificacion">
+                                        <span class="checkbox-custom"></span>
+                                        <span class="checkbox-text">Identificación Oficial</span>
+                                    </label>
+                                    
+                                    <label class="checkbox-documento">
+                                        <input type="checkbox" id="doc_comprobante" value="comprobante-domicilio">
+                                        <span class="checkbox-custom"></span>
+                                        <span class="checkbox-text">Comprobante de Domicilio</span>
+                                    </label>
+                                    
+                                    <label class="checkbox-documento">
+                                        <input type="checkbox" id="doc_fotografia" value="fotografia">
+                                        <span class="checkbox-custom"></span>
+                                        <span class="checkbox-text">Fotografía Reciente</span>
+                                    </label>
+                                    
+                                    <label class="checkbox-documento">
+                                        <input type="checkbox" id="doc_cuenta" value="cuenta-bancaria">
+                                        <span class="checkbox-custom"></span>
+                                        <span class="checkbox-text">Número de Cuenta Bancaria</span>
+                                    </label>
+                                </div>
+                                <small class="input-hint" style="display: block; margin-top: 15px;">Selecciona al menos un documento requerido</small>
+                            </div>
+                        </div>
+
+                        <div class="password-info-box" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);">
+                            <div class="info-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                                </svg>
+                            </div>
+                            <div class="info-content">
+                                <strong>Importante</strong>
+                                <p class="info-note">Una vez creada, la beca aparecerá automáticamente en el apartado HOME de todos los estudiantes registrados.</p>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer-student">
+                            <button type="button" class="btn-cancel-student" onclick="closeBecaModal()">Cancelar</button>
+                            <button type="submit" class="btn-save-student">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                                    <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"></path>
+                                    <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                                    <polyline points="7 3 7 8 15 8"></polyline>
+                                </svg>
+                                Crear Beca
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sección BECAS -->
+          <!-- Sección BECAS del Admin Dashboard -->
+<div class="section-content" id="becas-section">
+    <div class="students-header">
+        <div class="header-left">
+            <h2>Gestión de Becas</h2>
+            <p class="section-description">Crea y administra las convocatorias de becas disponibles</p>
+        </div>
+        <button class="btn-add-student" id="btnCreateBeca">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="16"></line>
+                <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+            Crear Nueva Beca
+        </button>
+    </div>
+
+    <!-- Filtros y búsqueda -->
+    <div class="students-filters">
+        <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="M21 21l-4.35-4.35"></path>
+            </svg>
+            <input type="text" id="searchBeca" placeholder="Buscar beca por nombre...">
+        </div>
+        <div class="filter-info">
+            <span class="total-students">Total: <strong id="totalBecasCount">0</strong> becas</span>
+        </div>
+    </div>
+
+    <!-- Tabla de becas -->
+    <div class="students-table-container" id="becasTableContainer">
+        <table class="students-table">
+            <thead>
+                <tr>
+                    <th>Nombre de la Beca</th>
+                    <th>Objetivo</th>
+                    <th>Fecha de Apertura</th>
+                    <th>Fecha de Cierre</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="becasTableBody">
+                <!-- Se llenará dinámicamente -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Estado vacío -->
+    <div class="empty-state" id="emptyStateBecas">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="80" height="80">
+            <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+            <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+        </svg>
+        <h3>No hay becas registradas</h3>
+        <p>Comienza creando tu primera convocatoria de beca</p>
+        <button class="btn-empty-action" onclick="document.getElementById('btnCreateBeca').click()">
+            Crear Nueva Beca
+        </button>
+    </div>
+</div>
+
+<!-- Modal de Crear/Editar Beca -->
+<div class="student-modal" id="becaModal" style="display: none;">
+    <div class="modal-overlay" onclick="closeBecaModal()"></div>
+    <div class="modal-content-student" style="max-width: 800px;">
+        <div class="modal-header-student">
+            <h3 id="modalBecaTitle">Crear Nueva Beca</h3>
+            <button class="modal-close-student" onclick="closeBecaModal()">&times;</button>
+        </div>
+        
+        <form id="becaForm" class="modal-body-student" style="max-height: 70vh; overflow-y: auto;">
+            <input type="hidden" id="becaId">
+            
+            <!-- Información Básica -->
+            <div class="form-group-student">
+                <label for="becaNombre">Nombre de la Beca <span class="required">*</span></label>
+                <input type="text" id="becaNombre" class="input-student" placeholder='Ej: Beca "Escribiendo el Futuro"' required>
+                <small class="input-hint">Nombre oficial de la convocatoria</small>
+            </div>
+
+            <div class="form-group-student">
+                <label for="becaDescripcion">Descripción <span class="required">*</span></label>
+                <textarea id="becaDescripcion" class="input-student" rows="3" placeholder="Describe brevemente la beca..." required style="resize: vertical; font-family: inherit;"></textarea>
+                <small class="input-hint">Descripción general de la beca</small>
+            </div>
+
+            <div class="form-group-student">
+                <label for="becaObjetivo">Objetivo <span class="required">*</span></label>
+                <textarea id="becaObjetivo" class="input-student" rows="3" placeholder="¿Cuál es el objetivo de esta beca?" required style="resize: vertical; font-family: inherit;"></textarea>
+                <small class="input-hint">Propósito y alcance de la beca</small>
+            </div>
+
+            <!-- Fechas -->
+            <div class="form-row">
+                <div class="form-group-student">
+                    <label for="becaFechaApertura">Fecha de Apertura <span class="required">*</span></label>
+                    <input type="date" id="becaFechaApertura" class="input-student" required>
+                    <small class="input-hint">Inicio de la convocatoria</small>
+                </div>
+                <div class="form-group-student">
+                    <label for="becaFechaCierre">Fecha de Cierre <span class="required">*</span></label>
+                    <input type="date" id="becaFechaCierre" class="input-student" required>
+                    <small class="input-hint">Fin de la convocatoria</small>
+                </div>
+            </div>
+
+            <!-- Documentos Requeridos -->
+            <div class="form-group-student">
+                <label style="display: block; margin-bottom: 15px;">Documentos Requeridos <span class="required">*</span></label>
+                <div style="background: #f8f9fc; padding: 20px; border-radius: 10px; border: 2px solid #e8eef5;">
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                        <label class="checkbox-documento">
+                            <input type="checkbox" id="doc_acta" value="acta-nacimiento">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">Acta de Nacimiento</span>
+                        </label>
+                        
+                        <label class="checkbox-documento">
+                            <input type="checkbox" id="doc_curp" value="curp">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">CURP</span>
+                        </label>
+                        
+                        <label class="checkbox-documento">
+                            <input type="checkbox" id="doc_identificacion" value="identificacion">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">Identificación Oficial</span>
+                        </label>
+                        
+                        <label class="checkbox-documento">
+                            <input type="checkbox" id="doc_comprobante" value="comprobante-domicilio">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">Comprobante de Domicilio</span>
+                        </label>
+                        
+                        <label class="checkbox-documento">
+                            <input type="checkbox" id="doc_fotografia" value="fotografia">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">Fotografía Reciente</span>
+                        </label>
+                        
+                        <label class="checkbox-documento">
+                            <input type="checkbox" id="doc_cuenta" value="cuenta-bancaria">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">Número de Cuenta Bancaria</span>
+                        </label>
+                    </div>
+                    <small class="input-hint" style="display: block; margin-top: 15px;">Selecciona al menos un documento requerido</small>
+                </div>
+            </div>
+
+            <div class="password-info-box" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);">
+                <div class="info-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                    </svg>
+                </div>
+                <div class="info-content">
+                    <strong>Importante</strong>
+                    <p class="info-note">Una vez creada, la beca aparecerá automáticamente en el apartado HOME de todos los estudiantes registrados.</p>
+                </div>
+            </div>
+
+            <div class="modal-footer-student">
+                <button type="button" class="btn-cancel-student" onclick="closeBecaModal()">Cancelar</button>
+                <button type="submit" class="btn-save-student">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                        <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"></path>
+                        <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                        <polyline points="7 3 7 8 15 8"></polyline>
+                    </svg>
+                    Crear Beca
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal de Ver Detalles de Beca -->
+<div class="student-modal" id="becaDetailsModal" style="display: none;">
+    <div class="modal-overlay" onclick="closeBecaDetailsModal()"></div>
+    <div class="modal-content-student" style="max-width: 700px;">
+        <div class="modal-header-student">
+            <h3>Detalles de la Beca</h3>
+            <button class="modal-close-student" onclick="closeBecaDetailsModal()">&times;</button>
+        </div>
+        
+        <div class="modal-body-student" style="max-height: 70vh; overflow-y: auto;">
+            <div class="form-group-student">
+                <label style="color: #667eea; font-size: 12px; font-weight: 600; text-transform: uppercase;">Nombre de la Beca</label>
+                <p id="detailNombre" style="font-size: 18px; font-weight: 600; color: #19326c; margin: 8px 0 20px;"></p>
+            </div>
+
+            <div class="form-group-student">
+                <label style="color: #667eea; font-size: 12px; font-weight: 600; text-transform: uppercase;">Descripción</label>
+                <p id="detailDescripcion" style="color: #5c6f8c; margin: 8px 0 20px; line-height: 1.6;"></p>
+            </div>
+
+            <div class="form-group-student">
+                <label style="color: #667eea; font-size: 12px; font-weight: 600; text-transform: uppercase;">Objetivo</label>
+                <p id="detailObjetivo" style="color: #5c6f8c; margin: 8px 0 20px; line-height: 1.6;"></p>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group-student">
+                    <label style="color: #667eea; font-size: 12px; font-weight: 600; text-transform: uppercase;">Fecha de Apertura</label>
+                    <p id="detailFechaApertura" style="color: #19326c; font-weight: 600; margin: 8px 0;"></p>
+                </div>
+                <div class="form-group-student">
+                    <label style="color: #667eea; font-size: 12px; font-weight: 600; text-transform: uppercase;">Fecha de Cierre</label>
+                    <p id="detailFechaCierre" style="color: #19326c; font-weight: 600; margin: 8px 0;"></p>
+                </div>
+            </div>
+
+            <div class="form-group-student">
+                <label style="color: #667eea; font-size: 12px; font-weight: 600; text-transform: uppercase; margin-bottom: 12px; display: block;">Documentos Requeridos</label>
+                <div id="detailDocumentos" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+            </div>
+
+            <div class="form-group-student">
+                <label style="color: #667eea; font-size: 12px; font-weight: 600; text-transform: uppercase;">Estado</label>
+                <p id="detailEstado" style="margin: 8px 0;"></p>
+            </div>
+        </div>
+        
+        <div class="modal-footer-student">
+            <button type="button" class="btn-cancel-student" onclick="closeBecaDetailsModal()">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Estilos para checkboxes personalizados */
+.checkbox-documento {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.checkbox-documento:hover {
+    background: rgba(102, 126, 234, 0.05);
+}
+
+.checkbox-documento input[type="checkbox"] {
+    display: none;
+}
+
+.checkbox-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #667eea;
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.3s;
+    flex-shrink: 0;
+}
+
+.checkbox-documento input[type="checkbox"]:checked + .checkbox-custom {
+    background: #667eea;
+    border-color: #667eea;
+}
+
+.checkbox-documento input[type="checkbox"]:checked + .checkbox-custom::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.checkbox-text {
+    color: #19326c;
+    font-size: 14px;
+    font-weight: 500;
+    user-select: none;
+}
+
+/* Estado de la beca */
+.beca-status {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.beca-status.abierta {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.beca-status.cerrada {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
+.beca-status.proxima {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+}
+
+/* Badges de documentos en detalles */
+.doc-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.doc-badge svg {
+    width: 16px;
+    height: 16px;
+}
+</style>
+
+<script>
+// ========================================
+// SISTEMA DE GESTIÓN DE BECAS
+// ========================================
+
+function initBecasModule() {
+    console.log('🎓 Inicializando módulo de becas...');
+    
+    loadBecas();
+    
+    // Botón de crear beca
+    const btnCreateBeca = document.getElementById('btnCreateBeca');
+    if (btnCreateBeca) {
+        btnCreateBeca.addEventListener('click', function(e) {
+            e.preventDefault();
+            openBecaModal();
+        });
+    }
+    
+    // Formulario de crear/editar beca
+    const becaForm = document.getElementById('becaForm');
+    if (becaForm) {
+        becaForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleBecaSubmit(e);
+        });
+    }
+    
+    // Búsqueda
+    const searchBeca = document.getElementById('searchBeca');
+    if (searchBeca) {
+        searchBeca.addEventListener('input', filterBecas);
+    }
+    
+    // Validación de fechas
+    const fechaApertura = document.getElementById('becaFechaApertura');
+    const fechaCierre = document.getElementById('becaFechaCierre');
+    
+    if (fechaApertura && fechaCierre) {
+        fechaApertura.addEventListener('change', function() {
+            fechaCierre.min = this.value;
+        });
+    }
+    
+    console.log('✅ Módulo de becas configurado');
+}
+
+// Obtener becas desde localStorage
+function getBecasFromStorage() {
+    const becasData = localStorage.getItem('tecnm_becas');
+    return becasData ? JSON.parse(becasData) : {};
+}
+
+// Guardar becas en localStorage
+function saveBecasToStorage(becas) {
+    localStorage.setItem('tecnm_becas', JSON.stringify(becas));
+}
+
+// Cargar becas en la tabla
+function loadBecas() {
+    const becas = getBecasFromStorage();
+    const becasList = Object.entries(becas);
+    
+    const tableBody = document.getElementById('becasTableBody');
+    const emptyState = document.getElementById('emptyStateBecas');
+    const tableContainer = document.getElementById('becasTableContainer');
+    const totalCount = document.getElementById('totalBecasCount');
+    
+    if (!tableBody) return;
+    
+    // Actualizar contador
+    if (totalCount) {
+        totalCount.textContent = becasList.length;
+    }
+    
+    if (becasList.length === 0) {
+        if (tableContainer) tableContainer.style.display = 'none';
+        if (emptyState) emptyState.style.display = 'flex';
+        return;
+    }
+    
+    if (tableContainer) tableContainer.style.display = 'block';
+    if (emptyState) emptyState.style.display = 'none';
+    
+    tableBody.innerHTML = '';
+    
+    becasList.forEach(([id, beca]) => {
+        const row = document.createElement('tr');
+        row.setAttribute('data-beca-id', id);
+        
+        const estado = getBecaEstado(beca.fechaApertura, beca.fechaCierre);
+        
+        row.innerHTML = `
+            <td><strong>${beca.nombre}</strong></td>
+            <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${beca.objetivo}</td>
+            <td>${formatDate(beca.fechaApertura)}</td>
+            <td>${formatDate(beca.fechaCierre)}</td>
+            <td><span class="beca-status ${estado.class}">${estado.text}</span></td>
+            <td>
+                <div class="student-actions">
+                    <button class="action-btn edit" onclick="viewBecaDetails('${id}')" title="Ver detalles">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </button>
+                    <button class="action-btn reset" onclick="openEditBecaModal('${id}')" title="Editar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                    </button>
+                    <button class="action-btn delete" onclick="deleteBeca('${id}')" title="Eliminar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
+                        </svg>
+                    </button>
+                </div>
+            </td>
+        `;
+        
+        tableBody.appendChild(row);
+    });
+    
+    console.log(`✓ ${becasList.length} becas cargadas`);
+}
+
+// Obtener estado de la beca
+function getBecaEstado(fechaApertura, fechaCierre) {
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
+    
+    const apertura = new Date(fechaApertura);
+    const cierre = new Date(fechaCierre);
+    
+    if (hoy < apertura) {
+        return { text: 'Próximamente', class: 'proxima' };
+    } else if (hoy >= apertura && hoy <= cierre) {
+        return { text: 'Abierta', class: 'abierta' };
+    } else {
+        return { text: 'Cerrada', class: 'cerrada' };
+    }
+}
+
+// Formatear fecha
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('es-MX', options);
+}
+
+// Abrir modal de crear beca
+function openBecaModal() {
+    const modal = document.getElementById('becaModal');
+    const form = document.getElementById('becaForm');
+    const title = document.getElementById('modalBecaTitle');
+    const submitBtn = form.querySelector('.btn-save-student');
+    
+    if (!modal || !form) return;
+    
+    form.reset();
+    document.getElementById('becaId').value = '';
+    title.textContent = 'Crear Nueva Beca';
+    submitBtn.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+            <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"></path>
+            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+            <polyline points="7 3 7 8 15 8"></polyline>
+        </svg>
+        Crear Beca
+    `;
+    
+    // Establecer fecha mínima como hoy
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('becaFechaApertura').min = today;
+    document.getElementById('becaFechaCierre').min = today;
+    
+    modal.style.display = 'flex';
+}
+
+// Cerrar modal
+function closeBecaModal() {
+    const modal = document.getElementById('becaModal');
+    if (modal) modal.style.display = 'none';
+}
+
+// Manejar envío del formulario
+function handleBecaSubmit(e) {
+    e.preventDefault();
+    
+    const id = document.getElementById('becaId').value;
+    const nombre = document.getElementById('becaNombre').value.trim();
+    const descripcion = document.getElementById('becaDescripcion').value.trim();
+    const objetivo = document.getElementById('becaObjetivo').value.trim();
+    const fechaApertura = document.getElementById('becaFechaApertura').value;
+    const fechaCierre = document.getElementById('becaFechaCierre').value;
+    
+    // Obtener documentos seleccionados
+    const documentos = [];
+    const checkboxes = document.querySelectorAll('.checkbox-documento input[type="checkbox"]:checked');
+    checkboxes.forEach(checkbox => {
+        documentos.push(checkbox.value);
+    });
+    
+    // Validaciones
+    if (!nombre || !descripcion || !objetivo || !fechaApertura || !fechaCierre) {
+        showNotification('Por favor completa todos los campos obligatorios', 'error');
+        return;
+    }
+    
+    if (documentos.length === 0) {
+        showNotification('Debes seleccionar al menos un documento requerido', 'error');
+        return;
+    }
+    
+    if (new Date(fechaCierre) < new Date(fechaApertura)) {
+        showNotification('La fecha de cierre debe ser posterior a la fecha de apertura', 'error');
+        return;
+    }
+    
+    const becas = getBecasFromStorage();
+    const becaId = id || 'beca_' + Date.now();
+    
+    const becaData = {
+        nombre,
+        descripcion,
+        objetivo,
+        fechaApertura,
+        fechaCierre,
+        documentos,
+        fechaCreacion: id ? becas[id].fechaCreacion : new Date().toISOString(),
+        fechaActualizacion: new Date().toISOString()
+    };
+    
+    becas[becaId] = becaData;
+    saveBecasToStorage(becas);
+    
+    loadBecas();
+    closeBecaModal();
+    
+    const mensaje = id ? 'Beca actualizada exitosamente' : 'Beca creada exitosamente';
+    showNotification(`✅ ${mensaje}`, 'success');
+    
+    console.log(`✓ Beca ${id ? 'actualizada' : 'creada'}: ${nombre}`);
+}
+
+// Ver detalles de beca
+function viewBecaDetails(becaId) {
+    const becas = getBecasFromStorage();
+    const beca = becas[becaId];
+    
+    if (!beca) {
+        showNotification('Beca no encontrada', 'error');
+        return;
+    }
+    
+    document.getElementById('detailNombre').textContent = beca.nombre;
+    document.getElementById('detailDescripcion').textContent = beca.descripcion;
+    document.getElementById('detailObjetivo').textContent = beca.objetivo;
+    document.getElementById('detailFechaApertura').textContent = formatDate(beca.fechaApertura);
+    document.getElementById('detailFechaCierre').textContent = formatDate(beca.fechaCierre);
+    
+    // Mostrar documentos
+    const documentosContainer = document.getElementById('detailDocumentos');
+    const nombresDocumentos = {
+        'acta-nacimiento': 'Acta de Nacimiento',
+        'curp': 'CURP',
+        'identificacion': 'Identificación Oficial',
+        'comprobante-domicilio': 'Comprobante de Domicilio',
+        'fotografia': 'Fotografía',
+        'cuenta-bancaria': 'Cuenta Bancaria'
+    };
+    
+    documentosContainer.innerHTML = beca.documentos.map(doc => `
+        <span class="doc-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+            ${nombresDocumentos[doc]}
+        </span>
+    `).join('');
+    
+    // Mostrar estado
+    const estado = getBecaEstado(beca.fechaApertura, beca.fechaCierre);
+    document.getElementById('detailEstado').innerHTML = `<span class="beca-status ${estado.class}">${estado.text}</span>`;
+    
+    document.getElementById('becaDetailsModal').style.display = 'flex';
+}
+
+function closeBecaDetailsModal() {
+    document.getElementById('becaDetailsModal').style.display = 'none';
+}
+
+// Abrir modal de edición
+function openEditBecaModal(becaId) {
+    const becas = getBecasFromStorage();
+    const beca = becas[becaId];
+    
+    if (!beca) {
+        showNotification('Beca no encontrada', 'error');
+        return;
+    }
+    
+    const modal = document.getElementById('becaModal');
+    const form = document.getElementById('becaForm');
+    const title = document.getElementById('modalBecaTitle');
+    const submitBtn = form.querySelector('.btn-save-student');
+    
+    // Llenar formulario
+    document.getElementById('becaId').value = becaId;
+    document.getElementById('becaNombre').value = beca.nombre;
+    document.getElementById('becaDescripcion').value = beca.descripcion;
+    document.getElementById('becaObjetivo').value = beca.objetivo;
+    document.getElementById('becaFechaApertura').value = beca.fechaApertura;
+    document.getElementById('becaFechaCierre').value = beca.fechaCierre;
+    
+    // Marcar documentos seleccionados
+    document.querySelectorAll('.checkbox-documento input[type="checkbox"]').forEach(checkbox => {
+        checkbox.checked = beca.documentos.includes(checkbox.value);
+    });
+    
+    title.textContent = 'Editar Beca';
+    submitBtn.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+            <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"></path>
+            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+            <polyline points="7 3 7 8 15 8"></polyline>
+        </svg>
+        Guardar Cambios
+    `;
+    
+    modal.style.display = 'flex';
+}
+
+// Eliminar beca
+function deleteBeca(becaId) {
+    const becas = getBecasFromStorage();
+    const beca = becas[becaId];
+    
+    if (!beca) {
+        showNotification('Beca no encontrada', 'error');
+        return;
+    }
+    
+    if (confirm(`¿Estás seguro de eliminar la beca "${beca.nombre}"?\n\nEsta acción no se puede deshacer y la beca ya no aparecerá para los estudiantes.`)) {
+        delete becas[becaId];
+        saveBecasToStorage(becas);
+        
+        loadBecas();
+        
+        showNotification(`🗑️ Beca "${beca.nombre}" eliminada`, 'info');
+        console.log(`✓ Beca eliminada: ${becaId}`);
+    }
+}
+
+// Filtrar becas
+function filterBecas() {
+    const searchTerm = document.getElementById('searchBeca').value.toLowerCase();
+    const rows = document.querySelectorAll('#becasTableBody tr');
+    let visibleCount = 0;
+    
+    rows.forEach(row => {
+        const nombre = row.children[0].textContent.toLowerCase();
+        const objetivo = row.children[1].textContent.toLowerCase();
+        
+        if (nombre.includes(searchTerm) || objetivo.includes(searchTerm)) {
+            row.style.display = '';
+            visibleCount++;
+        } else {
+            row.style.display = 'none';
+        }
+    });
+    
+    console.log(`🔍 Búsqueda: "${searchTerm}" - ${visibleCount} resultados`);
+}
+
+// Hacer funciones globales
+window.openBecaModal = openBecaModal;
+window.closeBecaModal = closeBecaModal;
+window.viewBecaDetails = viewBecaDetails;
+window.closeBecaDetailsModal = closeBecaDetailsModal;
+window.openEditBecaModal = openEditBecaModal;
+window.deleteBeca = deleteBeca;
+
+// Inicializar cuando se cambie a la sección de becas
+document.addEventListener('DOMContentLoaded', function() {
+    // Detectar cuando se cambie a la sección de becas
+    const navItems = document.querySelectorAll('.nav-item[data-section]');
+    navItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const section = this.getAttribute('data-section');
+            if (section === 'becas') {
+                setTimeout(() => {
+                    initBecasModule();
+                }, 300);
+            }
+        });
+    });
+});
+
+console.log('✅ Sistema de gestión de becas cargado');
+</script>
+
+            <!-- Sección REPORTES -->
+            <div class="section-content" id="reportes-section">
+                <div class="placeholder-content">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="80" height="80">
+                        <path d="M21.21 15.89A10 10 0 118 2.83"></path>
+                        <path d="M22 12A10 10 0 0012 2v10z"></path>
+                    </svg>
+                    <h3>Reportes y Estadísticas</h3>
+                    <p>Genera reportes detallados del sistema de becas</p>
+                </div>
+            </div>
+
+            <!-- Sección CONFIGURACIÓN -->
+            <div class="section-content" id="configuracion-section">
+                <div class="placeholder-content">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="80" height="80">
+                        <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <h3>Configuración del Sistema</h3>
+                    <p>Ajusta los parámetros y configuraciones generales</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-dashboard.js"></script>
+</body>
+</html>
